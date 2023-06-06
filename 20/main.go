@@ -32,17 +32,16 @@ func swapWords1(str string) string {
 	return string(answ)
 }
 
-// С помощью функции strings.Split()
+// С помощью функции strings.Split() и структуры strings.Builder{}
 func swapWords2(str string) string {
 	words := strings.Split(str, " ")
-	answ := make([]rune, 0, len([]rune(str)))
-
+	b := strings.Builder{}
+	b.Grow(len(str))
 	for i := len(words) - 1; i >= 0; i-- {
-		answ = append(answ, []rune(words[i])...)
-		answ = append(answ, ' ')
+		b.WriteString(fmt.Sprintf("%s ", words[i]))
 	}
 
-	return string(answ)
+	return b.String()
 }
 
 func main() {
