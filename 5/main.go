@@ -13,7 +13,7 @@ func sender(ch chan<- int) {
 	for {
 		ch <- i
 		i++
-		time.Sleep(1 * time.Second)
+		time.Sleep(500 * time.Millisecond)
 	}
 }
 
@@ -32,3 +32,23 @@ func main() {
 	go reader(ch)
 	time.Sleep(n * time.Second)
 }
+
+// Так же можно использовать буферизованный канал
+/* func main() {
+	fmt.Print("Время работы программы(сек): ")
+	var n time.Duration
+	fmt.Scan(&n)
+
+	go func() {
+		var ch = make(chan int, 1)
+		var i int = 1
+		for {
+			ch <- i
+			fmt.Printf("msg №%d\n", <-ch)
+			i++
+			time.Sleep(500 * time.Millisecond)
+		}
+	}()
+	time.Sleep(n * time.Second)
+}
+*/
