@@ -9,27 +9,23 @@ import (
 
 func main() {
 	// 2^20 = 1048576
-	a := new(big.Int)
-	b := new(big.Int)
+	x := new(big.Int)
+	y := new(big.Int)
+	ansv := new(big.Int)
 
-	a.SetUint64(60485766048576)
-	b.SetUint64(20485762048576)
+	x.SetString("10000000000000000000", 10)
+	y.SetString("5000000000000000000", 10)
+	fmt.Printf("num1 = %v; num2 = %v\n", x, y)
 
-	fmt.Printf("num1 = %v; num2 = %v\n", a, b)
+	ansv.Mul(x, y)
+	fmt.Printf("Multi = %v\n", ansv)
 
-	mul := new(big.Int)
-	mul.Mul(a, b)
-	fmt.Printf("Multi = %v\n", mul)
+	ansv.Div(x, y)
+	fmt.Printf("Div = %v\n", ansv)
 
-	div := new(big.Int)
-	div.Div(a, b)
-	fmt.Printf("Div = %v\n", div)
+	ansv.Add(x, y)
+	fmt.Printf("Sum = %v\n", ansv)
 
-	sum := new(big.Int)
-	sum.Add(a, b)
-	fmt.Printf("Sum = %v\n", sum)
-
-	dif := new(big.Int)
-	dif.Sub(a, b)
-	fmt.Printf("Dif = %v\n", dif)
+	ansv.Sub(x, y)
+	fmt.Printf("Dif = %v\n", ansv)
 }

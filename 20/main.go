@@ -14,7 +14,7 @@ func swapWords1(str string) string {
 	s := []rune{}
 	for i, j := range runes {
 		if j == ' ' {
-			words = append(words, string(s))
+			words = append(words, string(s), " ")
 			s = []rune{}
 		} else if i == len(runes)-1 {
 			s = append(s, j)
@@ -26,7 +26,6 @@ func swapWords1(str string) string {
 
 	for i := len(words) - 1; i >= 0; i-- {
 		answ = append(answ, []rune(words[i])...)
-		answ = append(answ, ' ')
 	}
 
 	return string(answ)
@@ -36,9 +35,13 @@ func swapWords1(str string) string {
 func swapWords2(str string) string {
 	words := strings.Split(str, " ")
 	b := strings.Builder{}
-	b.Grow(len(str))
+	b.Grow(len([]rune(str)))
 	for i := len(words) - 1; i >= 0; i-- {
-		b.WriteString(fmt.Sprintf("%s ", words[i]))
+		if i == 0 {
+			b.WriteString(words[i])
+		} else {
+			b.WriteString(fmt.Sprintf("%s ", words[i]))
+		}
 	}
 
 	return b.String()

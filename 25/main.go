@@ -11,8 +11,8 @@ func sleep(d time.Duration) {
 }
 
 func main() {
-	t := 2 * time.Second
+	d := 2 * time.Second
 	fmt.Println("Start sleep")
-	sleep(t)
-	fmt.Println("Wake up after", t)
+	sleep(d)
+	fmt.Println("Wake up after", d)
 }
