@@ -13,43 +13,25 @@ func quickSort(nums []int) []int {
 		return nums
 	}
 
-	sortNum := sortNum(nums)
-
-	quickSort(nums[:sortNum])
-	quickSort(nums[sortNum:])
-
-	return nums
-}
-
-func sortNum(nums []int) int {
-	halfNum := nums[len(nums)/2]
-	minIdx := 0
-	maxIdx := len(nums) - 1
-
-	for {
-		if nums[minIdx] < halfNum {
-			minIdx++
+	pivot := nums[0]
+	var less, greater []int
+	for _, num := range nums[1:] {
+		if num <= pivot {
+			less = append(less, num)
+		} else {
+			greater = append(greater, num)
 		}
-
-		if nums[maxIdx] > halfNum {
-			maxIdx--
-		}
-
-		if minIdx >= maxIdx {
-			return maxIdx
-		}
-
-		nums[minIdx], nums[maxIdx] = nums[maxIdx], nums[minIdx]
 	}
+	res := append(quickSort(less), pivot)
+	res = append(res, quickSort(greater)...)
+	return res
 }
 
 func main() {
 	nums := []int{7, 5, 8, 4, 0, 9, 3, 1, 2}
-	quickSort(nums)
-	fmt.Println(nums)
+	fmt.Println(quickSort(nums))
 
 	// С помощью пакета sort
-	nums = []int{7, 5, 8, 4, 0, 9, 3, 1, 2}
 	sort.Ints(nums)
 	fmt.Println(nums)
 }
